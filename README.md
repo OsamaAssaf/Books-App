@@ -1,6 +1,6 @@
 # google_books
 
-A new Flutter project.
+Books App with Flutter using google books api.
 
 ## Getting Started
 
