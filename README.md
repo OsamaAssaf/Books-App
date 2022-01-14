@@ -1,3 +1,3 @@
 # google_books
 
-Books App with Flutter using google books api.
+Books App with Flutter using google books api. (Flutter)
