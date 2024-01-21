@@ -50,7 +50,7 @@ class BooksListView extends StatelessWidget {
                             data[index].title!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
-                            style: Theme.of(context).textTheme.headline2,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                           const SizedBox(
                             height: 10.0,
@@ -59,7 +59,7 @@ class BooksListView extends StatelessWidget {
                             data[index].subtitle!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
                       ),
@@ -70,7 +70,7 @@ class BooksListView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(data[index].pageCount.toString() + ' page'),
+                            Text('${data[index].pageCount} page'),
                             Text(data[index].language!),
                           ],
                         ),
@@ -81,8 +81,7 @@ class BooksListView extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) =>
-                        BookDetails(book: data[index], index: index)));
+                    builder: (_) => BookDetails(book: data[index], index: index)));
               },
             ),
           ),

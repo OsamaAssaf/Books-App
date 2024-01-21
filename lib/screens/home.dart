@@ -23,24 +23,24 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isDark = context.watch<Themes>().isDark;
+    bool isDark = context.watch<Themes>().isDark;
 
     List<Book> favoriteBooks = context.watch<BookProvider>().favoriteBooks;
-    final TextEditingController _searchController = TextEditingController();
+    final TextEditingController searchController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('Google Books'),
       ),
       body: Column(
         children: [
-          _searchBar(context, _searchController),
-          if (favoriteBooks.length == 0)
+          _searchBar(context, searchController),
+          if (favoriteBooks.isEmpty)
             Center(
               child: Text(
                 'There is no favorite books add some.',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.displayLarge,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
       ),
       drawer: Drawer(
         child: Container(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -73,10 +73,12 @@ class _HomeState extends State<Home> {
                       children: [
                         const Text('Light'),
                         Switch.adaptive(
-                            value: _isDark,
+                            value: isDark,
                             onChanged: (bool newValue) async {
                               await context.read<Themes>().setTheme(newValue);
-                              await context.read<Themes>().getTheme();
+                              if (context.mounted) {
+                                await context.read<Themes>().getTheme();
+                              }
                             }),
                         const Text('Dark'),
                       ],
@@ -100,8 +102,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Container _searchBar(
-      BuildContext context, TextEditingController _searchController) {
+  Container _searchBar(BuildContext context, TextEditingController searchController) {
     return Container(
       margin: const EdgeInsets.all(16.0),
       height: MediaQuery.of(context).size.height * 0.05,
@@ -115,16 +116,15 @@ class _HomeState extends State<Home> {
           children: [
             Expanded(
               child: TextField(
-                controller: _searchController,
+                controller: searchController,
                 style: TextStyle(color: Theme.of(context).primaryColor),
               ),
             ),
             IconButton(
               onPressed: () {
-                if (_searchController.text.isNotEmpty) {
+                if (searchController.text.isNotEmpty) {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) =>
-                          BooksList(searchWord: _searchController.text)));
+                      builder: (_) => BooksList(searchWord: searchController.text)));
                 }
               },
               icon: Icon(

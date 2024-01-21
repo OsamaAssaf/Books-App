@@ -11,9 +11,9 @@ class DBHelper {
       return;
     } else {
       try {
-        String _path = await getDatabasesPath() + 'book.db';
+        String path = '${await getDatabasesPath()}book.db';
         _db = await openDatabase(
-          _path,
+          path,
           version: _version,
           onCreate: (Database db, int version) async {
             await db.execute('CREATE TABLE $_tableName '

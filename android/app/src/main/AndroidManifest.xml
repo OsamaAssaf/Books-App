@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.books.google_books">
+    package="com.assaf.google_books">
    <application
         android:label="google_books"
         android:name="${applicationName}"

@@ -12,70 +12,25 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-
-
-  cupertino_icons: ^1.0.2
-  http: ^0.13.4
-  url_launcher: ^6.0.17
-  provider: ^6.0.2
-  sqflite: ^2.0.1
-  shared_preferences: ^2.0.11
-  fluttertoast: ^8.0.8
-  flutter_launcher_icons: ^0.9.2
+  cupertino_icons: ^1.0.6
+  http: ^1.2.0
+  url_launcher: ^6.2.3
+  provider: ^6.1.1
+  sqflite: ^2.3.0
+  shared_preferences: ^2.2.2
+  fluttertoast: ^8.2.4
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_lints: ^3.0.1
 
 flutter_icons:
   android: true
   ios: true
   image_path: "assets/icon/book_icon.png"
 
-
-
-
-
-
-  flutter_lints: ^1.0.0
-
-
 flutter:
 
-
-
-
   uses-material-design: true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

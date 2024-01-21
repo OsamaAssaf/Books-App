@@ -33,47 +33,54 @@ class MyApp extends StatelessWidget {
       themeMode: themeMode,
       theme: ThemeData(
         primaryColor: Colors.deepPurple[500],
-        primarySwatch: Colors.deepPurple,
-        backgroundColor: Colors.white,
         cardColor: Colors.grey[400],
         textTheme: const TextTheme(
-          headline1: TextStyle(
-              color: Colors.black, fontSize: 24.0, fontWeight: FontWeight.bold),
-          headline2: TextStyle(
+          displayLarge: TextStyle(
+            color: Colors.black,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
             color: Colors.black,
             fontSize: 20.0,
           ),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Colors.black,
             fontSize: 20.0,
           ),
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             color: Colors.black,
             fontSize: 16.0,
           ),
+        ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple).copyWith(
+          background: Colors.white,
         ),
       ),
       darkTheme: ThemeData(
         primaryColor: Colors.deepPurple[500],
-        primarySwatch: Colors.deepPurple,
-        backgroundColor: Colors.grey[900],
         cardColor: Colors.grey[600],
         textTheme: const TextTheme(
-          headline1: TextStyle(
-              color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.bold),
-          headline2: TextStyle(
+          displayLarge: TextStyle(
+            color: Colors.white,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
           ),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
           ),
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
           ),
         ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+            .copyWith(background: Colors.grey[900]),
       ),
       home: const Home(),
     );

@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BookDetails extends StatefulWidget {
-  const BookDetails({Key? key, required this.book, required this.index})
-      : super(key: key);
+  const BookDetails({Key? key, required this.book, required this.index}) : super(key: key);
 
   final Book book;
   final int index;
@@ -22,9 +21,8 @@ class _BookDetailsState extends State<BookDetails> {
   @override
   Widget build(BuildContext context) {
     List<Book> favoriteBooks = context.watch<BookProvider>().favoriteBooks;
-    Book current = favoriteBooks.firstWhere(
-        (element) => element.id == widget.book.id,
-        orElse: () => Book());
+    Book current =
+        favoriteBooks.firstWhere((element) => element.id == widget.book.id, orElse: () => Book());
 
     if (widget.book.id == current.id) {
       setState(() {
@@ -32,15 +30,14 @@ class _BookDetailsState extends State<BookDetails> {
       });
     }
 
-    TextStyle? title = Theme.of(context).textTheme.headline1;
-    TextStyle? subtitle = Theme.of(context).textTheme.bodyText1;
+    TextStyle? title = Theme.of(context).textTheme.displayLarge;
+    TextStyle? subtitle = Theme.of(context).textTheme.bodyLarge;
 
-    String authors =
-        widget.book.authors!.replaceAll('[', '').replaceAll(']', '');
+    String authors = widget.book.authors!.replaceAll('[', '').replaceAll(']', '');
     List<String> authorsList = authors.split(',');
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -55,17 +52,13 @@ class _BookDetailsState extends State<BookDetails> {
                       });
 
                       showSnackBar(context, 'Added to favorite', () {
-                        context
-                            .read<BookProvider>()
-                            .deleteFromFavorite(widget.book.id!);
+                        context.read<BookProvider>().deleteFromFavorite(widget.book.id!);
                         setState(() {
                           _isFavorite = false;
                         });
                       });
                     } else {
-                      context
-                          .read<BookProvider>()
-                          .deleteFromFavorite(widget.book.id!);
+                      context.read<BookProvider>().deleteFromFavorite(widget.book.id!);
                       setState(() {
                         _isFavorite = false;
                       });
@@ -77,9 +70,7 @@ class _BookDetailsState extends State<BookDetails> {
                       });
                     }
                   },
-                  icon: !_isFavorite
-                      ? const Icon(Icons.star_border)
-                      : const Icon(Icons.star)),
+                  icon: !_isFavorite ? const Icon(Icons.star_border) : const Icon(Icons.star)),
             ],
             expandedHeight: MediaQuery.of(context).size.height * 0.25,
             flexibleSpace: FlexibleSpaceBar(
@@ -184,9 +175,9 @@ class _BookDetailsState extends State<BookDetails> {
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () async {
-                        if (!await launch(widget.book.infoLink!)) {
+                        if (!await launchUrl(Uri.parse(widget.book.infoLink!))) {
                           Fluttertoast.showToast(
-                            msg: 'Could not  launch',
+                            msg: 'Could not launch',
                             backgroundColor: Colors.grey,
                             textColor: Colors.black,
                           );
@@ -204,8 +195,7 @@ class _BookDetailsState extends State<BookDetails> {
     );
   }
 
-  void showSnackBar(
-      BuildContext context, String content, Function() onPressed) {
+  void showSnackBar(BuildContext context, String content, Function() onPressed) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: const Duration(seconds: 2),
       content: Text(content),

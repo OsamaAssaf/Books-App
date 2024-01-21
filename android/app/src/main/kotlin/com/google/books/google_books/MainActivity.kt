@@ -1,4 +1,4 @@
-package com.google.books.google_books
+package com.assaf.google_books
 
 import io.flutter.embedding.android.FlutterActivity
 

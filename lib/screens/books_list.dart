@@ -14,7 +14,7 @@ class _BooksListState extends State<BooksList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(widget.searchWord),
       ),
@@ -42,7 +42,7 @@ class _BooksListState extends State<BooksList> {
             return Center(
               child: Text(
                 'There is no books or no connection, please check your connection!',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.displayLarge,
                 textAlign: TextAlign.center,
               ),
             );
